@@ -11,7 +11,7 @@ function App() {
         <Link to="/login" className="me-3">
           Login
         </Link>
-        <Link to="/register">Register</Link>
+        <Link to="/signup">Signup</Link>
       </nav>
 
       <AppRoutes />

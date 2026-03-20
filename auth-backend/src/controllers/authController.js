@@ -9,9 +9,6 @@ export const signup = async (req, res) => {
       return res.status(400).json({ message: "User already exists" });
     }
 
-    // No hashing here anymore
-    // model will handle it
-
     const user = new User({
       email,
       password,
