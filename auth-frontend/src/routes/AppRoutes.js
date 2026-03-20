@@ -1,4 +1,5 @@
 import { Routes, Route } from "react-router-dom";
+import ProtectedRoute from "./ProtectedRoutes.js";
 import Home from "../pages/Home";
 import Login from "../pages/Login";
 import Signup from "../pages/Signup";
@@ -6,7 +7,15 @@ import Signup from "../pages/Signup";
 function AppRoutes() {
   return (
     <Routes>
-      <Route path="/" element={<Home />} />
+      <Route
+        path="/"
+        element={
+          <ProtectedRoute>
+            <Home />
+          </ProtectedRoute>
+        }
+      />
+
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
     </Routes>

@@ -1,12 +1,14 @@
 import { useState } from "react";
 import api from "../api/axios";
 import { toast, ToastContainer } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setFormData({
@@ -21,10 +23,12 @@ function Login() {
     try {
       const res = await api.post("/api/auth/login", formData);
 
-      // store token (important 🔐)
+      // store token (important)
       localStorage.setItem("token", res.data.token);
-
       toast.success(res.data.message);
+
+      // redirect
+      navigate("/");
 
       setFormData({
         email: "",
