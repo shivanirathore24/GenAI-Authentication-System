@@ -1,13 +1,14 @@
 import { useState } from "react";
+import { useNavigate, Link } from "react-router-dom";
 import api from "../api/axios";
-import { toast, ToastContainer } from "react-toastify";
-import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 function Login() {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
+
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -23,17 +24,11 @@ function Login() {
     try {
       const res = await api.post("/api/auth/login", formData);
 
-      // store token (important)
       localStorage.setItem("token", res.data.token);
+
       toast.success(res.data.message);
 
-      // redirect
       navigate("/");
-
-      setFormData({
-        email: "",
-        password: "",
-      });
     } catch (error) {
       const message = error.response?.data?.message || "Something went wrong";
 
@@ -79,11 +74,16 @@ function Login() {
                 Login
               </button>
             </form>
+
+            {/* Signup Link */}
+            <div className="text-center mt-3">
+              <p>
+                Don’t have an account? <Link to="/signup">Signup</Link>
+              </p>
+            </div>
           </div>
         </div>
       </div>
-
-      <ToastContainer />
     </div>
   );
 }

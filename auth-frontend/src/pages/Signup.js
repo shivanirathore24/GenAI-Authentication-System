@@ -1,12 +1,15 @@
 import { useState } from "react";
+import { useNavigate, Link } from "react-router-dom";
 import api from "../api/axios";
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 
 function Signup() {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
+
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setFormData({
@@ -23,10 +26,7 @@ function Signup() {
 
       toast.success(res.data.message);
 
-      setFormData({
-        email: "",
-        password: "",
-      });
+      navigate("/login");
     } catch (error) {
       const message = error.response?.data?.message || "Something went wrong";
 
@@ -68,13 +68,20 @@ function Signup() {
                 />
               </div>
 
-              <button className="btn btn-dark w-100">Signup</button>
+              <button className="btn btn-dark w-100 fw-semibold py-2">
+                Signup
+              </button>
             </form>
+
+            {/* Login Link */}
+            <div className="text-center mt-3">
+              <p>
+                Already have an account? <Link to="/login">Login</Link>
+              </p>
+            </div>
           </div>
         </div>
       </div>
-
-      <ToastContainer />
     </div>
   );
 }

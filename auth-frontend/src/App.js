@@ -1,21 +1,15 @@
-import { Link } from "react-router-dom";
+import Navbar from "./components/Navbar";
 import AppRoutes from "./routes/AppRoutes";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   return (
-    <div className="container mt-5">
-      <nav className="mb-4">
-        <Link to="/" className="me-3">
-          Home
-        </Link>
-        <Link to="/login" className="me-3">
-          Login
-        </Link>
-        <Link to="/signup">Signup</Link>
-      </nav>
-
+    <>
+      <Navbar />
       <AppRoutes />
-    </div>
+      <ToastContainer />
+    </>
   );
 }
 
